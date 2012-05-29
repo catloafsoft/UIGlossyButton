@@ -13,10 +13,9 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	static CGFloat scale = -1.0;
 	if (scale<0.0) {
 		UIScreen *screen = [UIScreen mainScreen];
-		if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0) {
+		if ([screen respondsToSelector:@selector(scale)]) {
 			scale = [screen scale];
-		}
-		else {
+		} else {
 			scale = 0.0;	// mean use old api
 		}
 	}
